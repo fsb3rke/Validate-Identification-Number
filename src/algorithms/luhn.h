@@ -18,8 +18,17 @@ void checkLuhn(char* sum) {
     
     // ! We need to split 'sum' string to integer digit list
     int integerSumArray[MAX_IDENTIFICATION_DIGIT_LENGTH];
+    int integerSum;
     for (int i = 0; i < sumLength; i++) {
-        integerSumArray[i] = (int)sum[i];
-        printf("%d\n", integerSumArray[i]);
+        if (sum[i] != ' ') {
+            integerSum = sum[i] - '0';
+            integerSumArray[i] = integerSum;
+        }
+    }
+
+    // ! Create a digit list (only include 2, 1 digits)
+    int integerSumArrayLength = sizeof(integerSumArray) / sizeof(integerSumArray[0]);
+    for (int i = 0; i < integerSumArrayLength; i++) {
+        
     }
 }

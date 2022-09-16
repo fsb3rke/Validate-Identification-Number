@@ -11,7 +11,10 @@ int main(void) {
     char* number;
 
     printf("Please enter identification number:\n");
-    scanf("%d\n", &number);
+    scanf("%d", &number);
+
+    number = "5555 5555 5555 4444";
+    printf("\n%s\n", number);
 
     // if (checkLuhn(number) == 0) printf("VALID\n");
     // else printf("INVALID\n");

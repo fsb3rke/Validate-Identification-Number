@@ -27,8 +27,15 @@ void checkLuhn(char* sum) {
     }
 
     // ! Create a digit list (only include 2, 1 digits)
-    int integerSumArrayLength = sizeof(integerSumArray) / sizeof(integerSumArray[0]);
+    static int integerSumArrayLength = sizeof(integerSumArray) / sizeof(integerSumArray[0]);
+    int digitArray[integerSumArrayLength];
     for (int i = 0; i < integerSumArrayLength; i++) {
-        
+        if (i % 2 == 0) digitArray[i] = 2;
+        else if (i % 2 == 1) digitArray[i] = 1;
+
+        printf("%d\n", digitArray[i]);
     }
+
+    // ! Multiply integer sum array to digit list
+    
 }

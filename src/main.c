@@ -13,8 +13,7 @@ int main(void) {
     printf("Please enter identification number:\n");
     scanf("%s", &number);
 
-    //number = "3379513561108795";
-    printf("\n%s\n", number);
+    // printf("\n%s\n", number);
 
     if (checkLuhn(number) == 0) printf("VALID\n");
     else printf("INVALID\n");

@@ -44,7 +44,7 @@ int checkLuhn(char* sum) {
         m_sum = 0;
         multiplyValue = integerSumArray[i] * digitArray[i];
         if (multiplyValue >= 10) {
-            m_sum = multiplyValue - 9;
+            m_sum = multiplyValue - SPLIT_MAGIC_NUMBER;
         }
         else {
             m_sum = multiplyValue;

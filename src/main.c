@@ -8,18 +8,16 @@
 #include <stdio.h>
 
 int main(void) {
-    char* number;
+    char number[16];
 
     printf("Please enter identification number:\n");
-    scanf("%d", &number);
+    scanf("%s", &number);
 
-    number = "5555555555554444";
+    //number = "3379513561108795";
     printf("\n%s\n", number);
 
-    // if (checkLuhn(number) == 0) printf("VALID\n");
-    // else printf("INVALID\n");
-
-    checkLuhn(number);
+    if (checkLuhn(number) == 0) printf("VALID\n");
+    else printf("INVALID\n");
 
     return 0;
 }

@@ -6,15 +6,17 @@
 
 #pragma once
 
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
-#define MAX_IDENTIFICATION_DIGIT_LENGTH 19
+#define MAX_IDENTIFICATION_DIGIT_LENGTH 16
+#define SPLIT_MAGIC_NUMBER 9
 
-void checkLuhn(char* sum) {
+int checkLuhn(char* sum) {
     int validStatus;
+    validStatus = 1;
     int sumLength = strlen(sum);
-    printf("%d\n", sumLength);
+    // printf("%d\n", sumLength);
     
     // ! We need to split 'sum' string to integer digit list
     int integerSumArray[MAX_IDENTIFICATION_DIGIT_LENGTH];
@@ -31,23 +33,37 @@ void checkLuhn(char* sum) {
         if (i % 2 == 0) digitArray[i] = 2;
         else if (i % 2 == 1) digitArray[i] = 1;
 
-        printf("%d\n", digitArray[i]);
+        // printf("%d : %d\n", i, digitArray[i]);
     }
 
     // ! Multiply integer sum array to digit list
     int resultArray[MAX_IDENTIFICATION_DIGIT_LENGTH];
+    int m_sum;
+    int multiplyValue;
     for (int i = 0; i < sumLength; i++) {
-        int sum;
-        int multiplyValue = integerSumArray[i] * digitArray[i];
-        printf("%d\n", multiplyValue);
-        char* value = multiplyValue + '0';
-        if (strlen(value) == 2) {
-            char* splittedValue = value[0] + value[1];
-            sum = splittedValue - '0';
+        m_sum = 0;
+        multiplyValue = integerSumArray[i] * digitArray[i];
+        if (multiplyValue >= 10) {
+            m_sum = multiplyValue - 9;
         }
-        else if (strlen(value) == 1) {
-            sum = multiplyValue;
+        else {
+            m_sum = multiplyValue;
         }
-        resultArray[i] = sum;
+        // printf("\n%d\n", m_sum);
+        resultArray[i] = m_sum;
     }
+
+    // ! Add up all the numbers
+    int resultNumber;
+    resultNumber = 0;
+    for (int i = 0; i < sumLength; i++) {
+        resultNumber += resultArray[i];
+    }
+    // printf("%d\n", resultNumber);
+
+    // ! Check, if number is divisible by ten (10)
+    if (resultNumber % 10 == 0) validStatus = 0;
+    else validStatus = 1;
+
+    return validStatus;
 }
